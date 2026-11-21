@@ -1,0 +1,21 @@
+title: PowerShell Started With an Encoded Command
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e01
+name: win_ps_encoded_command
+status: experimental
+description: >
+  powershell.exe or pwsh.exe started with -EncodedCommand (or a shortened form), a common way
+  to hide a script from casual command-line review. The SCCM client legitimately does this.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.execution, attack.t1059.001, attack.defense-evasion, attack.t1027]
+logsource: {product: windows, category: process_creation}
+detection:
+  sel_img:
+    Image|endswith: '\powershell.exe'
+  sel_cli:
+    CommandLine|windash|contains: [' -enc ', ' -encodedcommand ', ' -ec ']
+  filter_sccm:
+    ParentImage|endswith: '\CCM\CcmExec.exe'
+  condition: all of sel_* and not 1 of filter_*
+falsepositives: [Configuration management agents that wrap scripts in base64]
+level: medium

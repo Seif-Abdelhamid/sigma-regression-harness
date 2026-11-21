@@ -1,0 +1,17 @@
+title: PowerShell User-Agent Reaching an External Site
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e08
+name: proxy_powershell_ua_external
+status: experimental
+description: HTTP requests whose User-Agent is PowerShell's default, to hosts outside the corporate domain.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.command-and-control, attack.t1071.001, attack.execution, attack.t1059.001]
+logsource: {category: proxy}
+detection:
+  selection:
+    c-useragent|contains: ['WindowsPowerShell/', ' PowerShell/']
+  filter_corp:
+    cs-host|endswith: ['.corp.example', '.corp.example:443']
+  condition: selection and not filter_corp
+falsepositives: [Admin scripts calling SaaS APIs from workstations]
+level: medium

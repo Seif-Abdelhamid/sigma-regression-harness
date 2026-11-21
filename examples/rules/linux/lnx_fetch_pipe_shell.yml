@@ -1,0 +1,15 @@
+title: Remote Script Piped Straight Into a Shell
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e06
+name: lnx_fetch_pipe_shell
+status: experimental
+description: curl or wget output piped into sh/bash, executing remote content without saving it.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.execution, attack.t1059.004, attack.command-and-control, attack.t1105]
+logsource: {product: linux, category: process_creation}
+detection:
+  selection:
+    CommandLine|re: '(curl|wget)\s.*\|\s*(sudo\s+)?(ba|z|da)?sh\b'
+  condition: selection
+falsepositives: [Vendor installers documented as 'curl ... | sh']
+level: medium

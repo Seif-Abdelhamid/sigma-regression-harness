@@ -1,0 +1,211 @@
+{
+  "rules": {
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e01": {
+      "error": null,
+      "outcomes": {
+        "win-0001": "TP",
+        "win-0002": "TP",
+        "win-0003": "TP",
+        "win-0004": "FN",
+        "win-0101": "TN",
+        "win-0102": "TN",
+        "win-0103": "TN",
+        "win-0201": "TN",
+        "win-0202": "TN",
+        "win-0203": "TN",
+        "win-0301": "TN",
+        "win-0302": "TN",
+        "win-0303": "TN",
+        "win-0401": "TN",
+        "win-0402": "TN",
+        "win-0501": "TN",
+        "win-0502": "TN",
+        "win-0503": "TN"
+      },
+      "path": "examples/rules/windows/win_ps_encoded_command.yml",
+      "title": "PowerShell Started With an Encoded Command"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e02": {
+      "error": null,
+      "outcomes": {
+        "win-0001": "TN",
+        "win-0002": "TN",
+        "win-0003": "TN",
+        "win-0004": "TN",
+        "win-0101": "TN",
+        "win-0102": "TN",
+        "win-0103": "TN",
+        "win-0201": "TP",
+        "win-0202": "TP",
+        "win-0203": "TP",
+        "win-0301": "TN",
+        "win-0302": "TN",
+        "win-0303": "TN",
+        "win-0401": "TN",
+        "win-0402": "TN",
+        "win-0501": "TN",
+        "win-0502": "TN",
+        "win-0503": "TN"
+      },
+      "path": "examples/rules/windows/win_certutil_remote_fetch.yml",
+      "title": "Certutil Used to Download a Remote File"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e03": {
+      "error": null,
+      "outcomes": {
+        "win-0001": "TN",
+        "win-0002": "TN",
+        "win-0003": "TN",
+        "win-0004": "TN",
+        "win-0101": "TN",
+        "win-0102": "TN",
+        "win-0103": "TN",
+        "win-0201": "TN",
+        "win-0202": "TN",
+        "win-0203": "TN",
+        "win-0301": "TN",
+        "win-0302": "TN",
+        "win-0303": "TN",
+        "win-0401": "TP",
+        "win-0402": "TP",
+        "win-0501": "TN",
+        "win-0502": "TN",
+        "win-0503": "TN"
+      },
+      "path": "examples/rules/windows/win_shadow_copy_wipe.yml",
+      "title": "Volume Shadow Copies Deleted"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e04": {
+      "error": null,
+      "outcomes": {
+        "win-0001": "TP",
+        "win-0002": "TP",
+        "win-0003": "TN",
+        "win-0004": "TP",
+        "win-0101": "TN",
+        "win-0102": "TN",
+        "win-0103": "TN",
+        "win-0201": "TN",
+        "win-0202": "TN",
+        "win-0203": "TN",
+        "win-0301": "TN",
+        "win-0302": "TN",
+        "win-0303": "TN",
+        "win-0401": "TN",
+        "win-0402": "TN",
+        "win-0501": "TN",
+        "win-0502": "TN",
+        "win-0503": "TN"
+      },
+      "path": "examples/rules/windows/win_ps_hidden_cradle_b64.yml",
+      "title": "Download Cradle Hidden Inside a Base64 PowerShell Command"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e05": {
+      "error": null,
+      "outcomes": {
+        "lnx-0001": "TP",
+        "lnx-0002": "TP",
+        "lnx-0003": "TP",
+        "lnx-0101": "TN",
+        "lnx-0102": "TN",
+        "lnx-0201": "TN",
+        "lnx-0202": "TN",
+        "lnx-0203": "TN",
+        "lnx-0204": "TN",
+        "lnx-0301": "TN",
+        "lnx-0302": "TN",
+        "lnx-0303": "TN"
+      },
+      "path": "examples/rules/linux/lnx_devtcp_reverse_shell.yml",
+      "title": "Shell Redirected Through /dev/tcp"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e06": {
+      "error": null,
+      "outcomes": {
+        "lnx-0001": "TN",
+        "lnx-0002": "TN",
+        "lnx-0003": "TN",
+        "lnx-0101": "TN",
+        "lnx-0102": "TN",
+        "lnx-0201": "TP",
+        "lnx-0202": "TP",
+        "lnx-0203": "TP",
+        "lnx-0204": "TP",
+        "lnx-0301": "TN",
+        "lnx-0302": "TN",
+        "lnx-0303": "FP"
+      },
+      "path": "examples/rules/linux/lnx_fetch_pipe_shell.yml",
+      "title": "Remote Script Piped Straight Into a Shell"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e07": {
+      "error": null,
+      "outcomes": {
+        "px-0001": "TP",
+        "px-0002": "TP",
+        "px-0003": "TP",
+        "px-0101": "TN",
+        "px-0102": "TN",
+        "px-0103": "TN",
+        "px-0201": "TN",
+        "px-0202": "TN",
+        "px-0301": "TN",
+        "px-0302": "TN"
+      },
+      "path": "examples/rules/proxy/proxy_binary_from_bare_ip.yml",
+      "title": "Executable Content Downloaded From a Bare External IP"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e08": {
+      "error": null,
+      "outcomes": {
+        "px-0001": "TN",
+        "px-0002": "TP",
+        "px-0003": "TN",
+        "px-0101": "TN",
+        "px-0102": "TN",
+        "px-0103": "TN",
+        "px-0201": "TP",
+        "px-0202": "TP",
+        "px-0301": "TN",
+        "px-0302": "TN"
+      },
+      "path": "examples/rules/proxy/proxy_powershell_ua_external.yml",
+      "title": "PowerShell User-Agent Reaching an External Site"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e09": {
+      "error": null,
+      "outcomes": {
+        "okta-0001": "TP",
+        "okta-0002": "TP",
+        "okta-0101": "TN",
+        "okta-0102": "TN",
+        "okta-0103": "FP",
+        "okta-0201": "TN",
+        "okta-0202": "TN",
+        "okta-0301": "TN",
+        "okta-0302": "TN",
+        "okta-0303": "TN"
+      },
+      "path": "examples/rules/okta/okta_mfa_factor_removed.yml",
+      "title": "Okta MFA Factor Deactivated or Reset"
+    },
+    "6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e10": {
+      "error": null,
+      "outcomes": {
+        "okta-0001": "TN",
+        "okta-0002": "TN",
+        "okta-0101": "TN",
+        "okta-0102": "TN",
+        "okta-0103": "TN",
+        "okta-0201": "TP",
+        "okta-0202": "TP",
+        "okta-0301": "TN",
+        "okta-0302": "TN",
+        "okta-0303": "TN"
+      },
+      "path": "examples/rules/okta/okta_admin_privilege_granted.yml",
+      "title": "Okta Administrator Role Granted"
+    }
+  },
+  "version": 1
+}

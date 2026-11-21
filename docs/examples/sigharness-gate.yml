@@ -1,0 +1,60 @@
+# Example GitHub Actions workflow for a repository of Sigma rules.
+# Copy to .github/workflows/sigharness.yml in YOUR rules repository and adjust the paths.
+#
+# It gates every pull request twice:
+#   1. compare: the PR's rules vs the base branch's rules, on the PR's corpus
+#   2. check:   the PR's rules vs the committed baseline (catches drift merged without review)
+# and writes a Markdown job summary plus JUnit XML for the CI test view.
+#
+# Read-only: no secrets, no write permissions, no network access beyond installing the tool.
+name: sigma-regression
+
+on:
+  pull_request:
+    paths: ["rules/**", "tests/corpus/**", "sigharness-baseline.json", "fieldmap.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      # Pin third-party actions to a full commit SHA in production (tags can be repointed).
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install sigharness (pinned commit)
+        # Replace <commit-sha> with a reviewed commit of the sigma-regression-harness repository.
+        run: pip install "git+https://github.com/Seif-Abdelhamid/sigma-regression-harness@<commit-sha>"
+      - name: Check out the base branch's rules
+        # Expressions go through env, never straight into the script (avoids injection).
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: git worktree add "$RUNNER_TEMP/base" "origin/$BASE_REF"
+      - name: Gate against the base branch
+        run: >
+          sigharness compare
+          --base-rules "$RUNNER_TEMP/base/rules"
+          --rules rules
+          --corpus tests/corpus
+          --fieldmap fieldmap.yml
+          --fail-on-coverage-loss
+          --report-md "$GITHUB_STEP_SUMMARY"
+          --report-junit sigharness-junit.xml
+      - name: Gate against the committed baseline
+        if: always()
+        run: >
+          sigharness check
+          --baseline sigharness-baseline.json
+          --rules rules
+          --corpus tests/corpus
+          --fieldmap fieldmap.yml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sigharness-junit
+          path: sigharness-junit.xml

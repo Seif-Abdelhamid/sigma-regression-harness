@@ -1,0 +1,20 @@
+title: Remote Script Piped Straight Into a Shell
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e06
+name: lnx_fetch_pipe_shell
+status: experimental
+description: curl or wget output piped into sh/bash, executing remote content without saving it.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.execution, attack.t1059.004, attack.command-and-control, attack.t1105]
+logsource: {product: linux, category: process_creation}
+detection:
+  selection:
+    CommandLine|re: '(curl|wget)\s.*\|\s*(sudo\s+)?(ba|z|da)?sh\b'
+  filter_corp_bootstrap:
+    # The whole command line must be exactly the documented bootstrap invocation,
+    # so text appended after it (e.g. a shell comment) cannot borrow the exception.
+    User: ansible
+    CommandLine|re: '^bash -c ''curl -s https://repo\.corp\.example/bootstrap/[A-Za-z0-9_.-]+\.sh \| sh''$'
+  condition: selection and not filter_corp_bootstrap
+falsepositives: [Vendor installers documented as 'curl ... | sh']
+level: medium

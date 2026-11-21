@@ -1,0 +1,20 @@
+title: Certutil Used to Download a Remote File
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e02
+name: win_certutil_remote_fetch
+status: experimental
+description: certutil.exe with -urlcache or -verifyctl and a URL, a living-off-the-land download.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.command-and-control, attack.t1105]
+logsource: {product: windows, category: process_creation}
+detection:
+  sel_img:
+    - Image|endswith: '\certutil.exe'
+    - OriginalFileName: 'CertUtil.exe'
+  sel_flag:
+    CommandLine|windash|contains: ['-urlcache', '-verifyctl']
+  sel_url:
+    CommandLine|contains: ['http://', 'https://']
+  condition: all of sel_*
+falsepositives: [Rare administrative certificate-chain checks against internal CRL servers]
+level: high

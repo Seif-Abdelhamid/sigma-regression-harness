@@ -1,0 +1,16 @@
+title: Okta Administrator Role Granted
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e10
+name: okta_admin_privilege_granted
+status: experimental
+description: An admin role was granted to a user or a group (successful events only).
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.privilege-escalation, attack.persistence, attack.t1098.003]
+logsource: {product: okta, service: okta}
+detection:
+  selection:
+    eventType: ['user.account.privilege.grant', 'group.privilege.grant']
+    outcome.result: SUCCESS
+  condition: selection
+falsepositives: [Planned role changes from the IAM change process]
+level: high

@@ -1,0 +1,13 @@
+# The sample proxy corpus is ECS-style JSON; the proxy rules use Sigma's proxy taxonomy.
+# Each Sigma field name reads the listed (dotted) path of the event.
+mappings:
+  - logsource: {category: proxy}
+    fields:
+      cs-host: url.domain
+      c-uri: url.original
+      c-uri-extension: url.extension
+      c-useragent: user_agent.original
+      cs-method: http.request.method
+      sc-status: http.response.status_code
+      dst_ip: destination.ip
+      src_ip: source.ip

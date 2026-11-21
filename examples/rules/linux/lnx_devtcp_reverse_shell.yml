@@ -1,0 +1,19 @@
+title: Shell Redirected Through /dev/tcp
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e05
+name: lnx_devtcp_reverse_shell
+status: experimental
+description: >
+  bash's /dev/tcp or /dev/udp pseudo-device with a file-descriptor redirection, the classic
+  one-line reverse shell. A plain '>' write to /dev/tcp is a common port health check.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.execution, attack.t1059.004, attack.command-and-control]
+logsource: {product: linux, category: process_creation}
+detection:
+  sel_dev:
+    CommandLine|contains: ['/dev/tcp/', '/dev/udp/']
+  sel_redirect:
+    CommandLine|contains: ['>&', '<&', '0>&1']
+  condition: all of sel_*
+falsepositives: [Unusual but legitimate interactive debugging]
+level: high

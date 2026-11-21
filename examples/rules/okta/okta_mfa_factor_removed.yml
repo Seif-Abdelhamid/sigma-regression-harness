@@ -1,0 +1,18 @@
+title: Okta MFA Factor Deactivated or Reset
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e09
+name: okta_mfa_factor_removed
+status: experimental
+description: >
+  A user's MFA factor was deactivated or all factors were reset, which lets an attacker who
+  holds the password enrol their own factor.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.persistence, attack.credential-access, attack.t1556.006]
+logsource: {product: okta, service: okta}
+detection:
+  selection:
+    eventType: ['user.mfa.factor.deactivate', 'user.mfa.factor.reset_all']
+    outcome.result: SUCCESS
+  condition: selection
+falsepositives: [Help-desk resets for users who lost a device]
+level: medium

@@ -1,0 +1,21 @@
+title: Executable Content Downloaded From a Bare External IP
+id: 6f1c2a10-6a5e-4c1b-9d0e-1a2b3c4d5e07
+name: proxy_binary_from_bare_ip
+status: experimental
+description: >
+  An executable or script fetched from a host given as a literal IPv4 address outside the
+  private ranges. Staging servers often have no DNS name.
+author: sigma-regression-harness sample pack
+date: 2026-11-21
+tags: [attack.command-and-control, attack.t1105]
+logsource: {category: proxy}
+detection:
+  sel_host:
+    cs-host|re: '^\d{1,3}(\.\d{1,3}){3}(:\d+)?$'
+  sel_ext:
+    c-uri-extension: ['exe', 'dll', 'ps1', 'hta', 'msi', 'scr']
+  filter_private:
+    dst_ip|cidr: ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16']
+  condition: all of sel_* and not filter_private
+falsepositives: [Appliances updated over plain IP by a vendor]
+level: high
